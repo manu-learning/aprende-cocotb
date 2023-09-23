@@ -1,0 +1,14 @@
+* Cocotb Makefile
+** Parámetros
+   | Parámetro       | Descripción                                                  |
+   |-----------------+--------------------------------------------------------------|
+   | SIM             | definir el simulador predeterminado (Ej. icarus)             |
+   | TOPLEVEL_LANG   | definir el lenguaje de descripción de hardware (Ej. verilog) |
+   | VERILOG_SOURCES | con extensión ~.sv~                                          |
+   | VHDL_SOURCES    |                                                              |
+   | TOPLEVEL        |                                                              |
+   | MODULE          |                                                              |
+* Referencias
+** Referencias Oficiales
+   1. [[https://docs.cocotb.org/en/stable/simulator_support.html][Simulator support - cocotb (docs.cocotb.org)]]
+   2. [[https://steveicarus.github.io/iverilog/index.html][Icarus Verilog (steveicarus.github.io)]]
