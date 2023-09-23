@@ -1,9 +1,10 @@
-##@ Dependencias
+##@ Instalar Dependencias
 
 install-all: install-python install-cocotb install-verilog install-ghdl ##
 
 install-python: ##
-	sudo aptitude install -y python3 python3-pip
+	sudo aptitude install -y python3 python3-pip \
+	&& pip3 install pytest
 
 install-cocotb: ##
 	pip install cocotb[bus]
