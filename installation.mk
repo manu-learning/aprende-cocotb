@@ -4,7 +4,7 @@ LOGISIM_EVOLUTION_DEBIAN_FILE=logisim-evolution_$(LOGISIM_EVOLUTION_VERSION)-1_$
 
 ##@ Instalar Dependencias
 
-install-all: install-loigism install-python install-cocotb install-verilog install-ghdl ##
+install-all: install-logisim install-python install-cocotb install-verilog install-ghdl ##
 
 install-logisim: ##
 	sudo aptitude install -y logisim
