@@ -1,29 +1,28 @@
-SOURCE_FILES=$(wildcard *.v)
+VERILOG_SOURCE_FILES=$(wildcard $(VERILOG_SOURCE_CODE_DIR)/*.v)
+TESTBENCH_FILES=$(wildcard $(TESTBENCH_DIR)/*.v)
+
 EXAMPLE_NAME=$(notdir $(PWD))
-BIN=$(EXAMPLE_NAME).out
+SIMULATION_FILE=$(EXAMPLE_NAME).out
 
-compile: $(BIN)
-
-test:
-	@echo $(EXAMPLE_NAME)
+compile: $(SIMULATION_DIR)/$(SIMULATION_FILE)
 
 # (vvp) Icarus verilog vvp runtime engine
 # ---------------------------------------
 #
 # - ejecuta el compilador por Icarus Verilog
 run:
-	vvp -v $(BIN)
+	vvp -v $(SIMULATION_DIR)/$(SIMULATION_FILE)
 
 display-waveform:
-	gtkwave $(EXAMPLE_NAME).vcd
+	gtkwave $(WAVEFORM_DIR)/$(EXAMPLE_NAME).vcd
 
 # (iverilog) Icarus Verilog Compiler
 # ----------------------------------
 #
 # - compila el código fuente de archivos .v
-$(BIN): $(SOURCE_FILES)
+$(SIMULATION_DIR)/$(SIMULATION_FILE): $(VERILOG_SOURCE_FILES) $(TESTBENCH_FILES)
 	iverilog -o $@ $^
 
 clean:
-	@rm --verbose *.out
-	@rm --verbose *.vcd
+	@rm --verbose $(SIMULATION_DIR)/*.out
+	@rm --verbose $(WAVEFORM_DIR)/*.vcd
