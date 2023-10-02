@@ -1,4 +1,4 @@
-module xor_testbench();
+module xor_tb();
 
    reg A, B;
    wire F;
@@ -7,9 +7,9 @@ module xor_testbench();
 
    initial
      begin
-        $dumpfile("xor_gate.vcd");
+        $dumpfile("views/xor_gate.vcd");
 
-        $dumpvars(0, xor_testbench);
+        $dumpvars(0, xor_tb);
 
         A=1'b0;
         B=1'b0;

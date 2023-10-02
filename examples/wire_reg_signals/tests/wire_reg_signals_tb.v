@@ -7,7 +7,7 @@
 // - el tiempo de la simulación será de 1.000 picosegundos
 // `timescale 1ns / 1ps
 
-module hello_world_testbench();
+module wire_reg_signals_tb();
    // señales tipo REG
    // ----------------
    //
@@ -21,15 +21,15 @@ module hello_world_testbench();
    wire F;
 
    // asociamos con la simulación las entradas/salidas del módulo "hello_world"
-   hello_world dut(A, B, F);
+   wire_reg_signals dut(A, B, F);
 
 initial
 begin
    // persistimos el comportamiento en un fichero (vcd) "value change dump"
-   $dumpfile("hello_world.vcd");
+   $dumpfile("views/wire_reg_signals.vcd");
 
    // definimos las variables de que entorno guardar
-   $dumpvars(1,hello_world_testbench);
+   $dumpvars(1,wire_reg_signals_tb);
 
    // inicializamos las entradas
    // - nombre_variable = cantidad de bits + tipo bit + valor

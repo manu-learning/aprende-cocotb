@@ -1,4 +1,4 @@
-module half_adder_testbench();
+module half_adder_tb();
    reg A, B;
    wire suma, acarreo;
 
@@ -6,8 +6,8 @@ module half_adder_testbench();
 
    initial
      begin
-        $dumpfile("half_adder.vcd");
-        $dumpvars(1,half_adder_testbench);
+        $dumpfile("views/half_adder.vcd");
+        $dumpvars(1,half_adder_tb);
 
         // 00 es el valor de las entradas A y B respectivamente
         A=1'b0;
