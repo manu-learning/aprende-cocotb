@@ -1,9 +1,9 @@
 __pycache__/
 results.xml
-sim.vpp
 cmds.f
 logs/
 cocotb/
+*.vvp
 *.vcd
 *.out
 
