@@ -1,0 +1,9 @@
+* Referencias
+** Oficial
+1. https://docs.cocotb.org/en/v1.3.1/simulator_support.html
+** Extraoficial
+1. https://www.cyberciti.biz/faq/bash-get-exit-code-of-command/
+2. https://fabianlee.org/2020/10/14/bash-using-logic-expressions-as-a-shorthand-for-if-then-else-control/
+** Issues
+1. https://stackoverflow.com/questions/6790631/use-the-contents-of-a-file-to-replace-a-string-using-sed
+2. https://stackoverflow.com/questions/4749330/how-to-test-if-string-exists-in-file-with-bash
