@@ -5,8 +5,8 @@ COCOTB_TESTBENCH_FILES=$(wildcard ../tests/*.py)
 SIM ?= icarus
 TOPLEVEL_LANG ?= verilog
 
+# TODO: no lo detectaba
 #SIM_ARGS ?= --vcd=dump.vcd
-#--vcd=waveform.vcd
 
 VERILOG_SOURCES += $(VERILOG_SOURCE_FILES)
 
@@ -22,8 +22,4 @@ include $(shell cocotb-config --makefiles)/Makefile.sim
 # gtkwave-show-adder-test: ##
 # 	gtkwave cocotb/examples/adder/tests/dump.vcd
 
-# /usr/bin/iverilog -o sim_build/sim.vvp -D COCOTB_SIM=1 -s up_counter -f sim_build/cmds.f -g2012   ../hdl/up_counter.v
-# rm -f results.xml
-# MODULE=up_counter_tb TESTCASE= TOPLEVEL=up_counter TOPLEVEL_LANG=verilog \
-#          /usr/bin/vvp -M /home/jelou/.local/lib/python3.8/site-packages/cocotb/libs -m libcocotbvpi_icarus   sim_build/sim.vvp
 .PHONY: cocotb-simulate
