@@ -1,0 +1,11 @@
+
+// - the "macro" to dump signals
+// - to get waveforms in VCD format some Verilog code must be added to the top component
+`ifdef COCOTB_SIM
+   initial begin
+      $dumpfile ("dump.vcd");
+      $dumpvars (0, REPLACE_WITH_MODULE_NAME);
+      #1;
+   end
+`endif
+endmodule
