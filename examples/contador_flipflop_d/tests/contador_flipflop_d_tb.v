@@ -6,29 +6,26 @@
 
 // - el testbench no tendrá entradas ni salidas,
 // por eso no las declaramos entre los paréntesis del módulo
-module flipflop_jk_tb( );
+module contador_flipflop_d_tb( );
 
    // - manejamos todas las entradas/salidas del sistema como variables internas del módulo (reg y wire)
    // - las entradas las declaramos como registros (reg)
    // - las salidas las declaramos como cables (wire)
-   reg  i_j, i_k, i_clk;
-   wire o_q, o_qn;
+   reg  i_clk;
+   wire [3:0] o_cuenta;
 
-   // - "creamos una instancia" del Flip Flop JK (llamandolo por su nombre de módulo),
-   // - a la instancia del FF_JK le asignamos una etiqueta (para crear un tipo de dato)
+   // - "creamos una instancia" del Flip Flop D (llamandolo por su nombre de módulo),
+   // - a la instancia del FF_D le asignamos una etiqueta (para crear un tipo de dato)
    //
    // no confundir las variables
    // - si tiene "un punto de prefijo" => pertenece al módulo que estamos invocamos
    // - si está "dentro de los paréntesis" => entonces el del módulo top ó bien el testbench
    //
    // a cada entrada/salida le conectamos el cable (wire ó reg) correspondiente de éste módulo
-   flipflop_jk dut (
-              .i_j (i_j),
-              .i_k (i_k),
-              .i_clk (i_clk),
-              .o_q (o_q),
-              .o_qn (o_qn)
-              );
+   contador_flipflop_d dut (
+                            .i_clk (i_clk),
+                            .o_cuenta (o_cuenta)
+                            );
 
    // - con éste Bloque always+forever que se ejecuta siempre,
    // podemos hacer que la señal de reloj cambie, separado de las entradas
@@ -72,29 +69,26 @@ module flipflop_jk_tb( );
         $dumpfile("waveforms/dump.vcd");
 
         // definimos las variables de que entorno guardar
-        $dumpvars(1, flipflop_jk_tb);
+        $dumpvars(1, contador_flipflop_d_tb);
 
         // imprimimos los valores
-        $monitor("i_j=%0d, i_k=%d, o_q=%0d, i_clk=%d", i_j, i_k, o_q, i_clk);
+        $monitor("i_clk=%0d, o_cuenta=%0d", i_clk, o_cuenta);
 
         // - inicializamos las entradas
         // - en el instante 0
-        i_j = 0; i_k = 0;
         // i_clk = 0;
 
         // - generamos un retraso de 100 unidades de tiempo
         #100;
-        i_j = 1; i_k = 1;
         // i_clk = 1;
 
         // - generamos un retraso de otras 100 unidades de tiempo
         #100;
-        i_j = 0; i_k = 1;
         // i_clk = 0;
 
         // - generamos un retraso de otras 100 unidades de tiempo
-        // #100;
-        // i_clk = 1;
+        #100;
+        // i_clk = 0;
 
         // - generamos un retraso de otras 100 unidades de tiempo, para visualizarlo en el GTKWave
         #100;
@@ -105,6 +99,6 @@ module flipflop_jk_tb( );
         // sobre el ejecutable que fue compilado por `iverilog`
         // entonces la linea de comandos tampóco finalizará (necesitaremos matar el proceso)
         $finish;
-     end // initial begin
+     end
 
 endmodule
