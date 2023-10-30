@@ -30,6 +30,33 @@ module flipflop_jk_tb( );
               .o_qn (o_qn)
               );
 
+   // TODO: no podemos terminar su ejecución con mi configuración de makefile
+   // - con éste Bloque always+forever que se ejecuta siempre,
+   // podemos hacer que la señal de reloj cambie, separado de las entradas
+   // (las entradas que cambiabamos su valor en el Bloque Initial)
+   //
+   // - si utilizamos ésta técnica, entonces comentamos las asignaciones a la entrada i_clk del bloque initial
+   always
+     begin
+        // si no inicializamos el clock con un valor,
+        // tendrá un valor indeterminado cuando en el bloque forever hagamos i_clk = ~i_clk;
+        i_clk = 0;
+
+        forever
+          begin
+             // - definimos un retraso de 50 unidades de tiempo,
+             // cada 50 unidades de tiempo se cambiará el valor de la entrada de reloj
+             //
+             // - se recomienda que su valor sea la mitad que
+             // el tiempo espera/retraso definido entre cambios de estado de mis entradas (i_j, i_k)
+             #50;
+
+             // - cambiamos el valor de la señal de reloj,
+             // al valor opuesto que tenía "su estado estado anterior"
+             i_clk = ~i_clk;
+          end
+     end
+
    // el Bloque Initial
    // - lo utilizamos sólo en TestBenches,
    // porque va a asignar valores a registros que yo quiero inicializar en algún punto
@@ -48,53 +75,37 @@ module flipflop_jk_tb( );
         // definimos las variables de que entorno guardar
         $dumpvars(1, flipflop_jk_tb);
 
+        // imprimimos los valores
+        $monitor("i_j=%0d, i_k=%d, o_q=%0d, i_clk=%d", i_j, i_k, o_q, i_clk);
+
         // - inicializamos las entradas
         // - en el instante 0
         i_j = 0; i_k = 0;
-        i_clk = 0;
+        // i_clk = 0;
 
         // - generamos un retraso de 100 unidades de tiempo
         #100;
         i_j = 1; i_k = 1;
-        i_clk = 1;
+        // i_clk = 1;
 
         // - generamos un retraso de otras 100 unidades de tiempo
         #100;
         i_j = 0; i_k = 1;
-        i_clk = 0;
+        // i_clk = 0;
 
         // - generamos un retraso de otras 100 unidades de tiempo
-        #100;
-        i_clk = 1;
+        // #100;
+        // i_clk = 1;
 
         // - generamos un retraso de otras 100 unidades de tiempo, para visualizarlo en el GTKWave
         #100;
+
+        // IMPORTANTE:
+        // si nos olvidamos de FINALIZAR éste bloque,
+        // cuando ejecutemos el testbench con el comando `vvp`
+        // sobre el ejecutable que fue compilado por `iverilog`
+        // entonces la linea de comandos tampóco finalizará (necesitaremos matar el proceso)
+        $finish;
      end // initial begin
-
-
-   // TODO: no podemos terminar su ejecución con mi configuración de makefile
-   /*
-   // - con éste Bloque always+forever que se ejecuta siempre,
-   // podemos hacer que la señal de reloj cambie, separado de las entradas
-   // (las entradas que cambiabamos su valor en el Bloque Initial)
-   //
-   // - si utilizamos ésta técnica, entonces comentamos las asignaciones a la entrada i_clk del bloque initial
-   always
-     begin
-        forever
-          begin
-             // - cambiamos el valor de la señal de reloj,
-             // al valor opuesto que tenía "su estado estado anterior"
-             i_clk = ~i_clk;
-
-             // - definimos un retraso de 50 unidades de tiempo,
-             // cada 50 unidades de tiempo se cambiará el valor de la entrada de reloj
-             //
-             // - se recomienda que su valor sea la mitad que
-             // el tiempo espera/retraso definido entre cambios de estado de mis entradas (i_j, i_k)
-             #50;
-          end
-     end
-    */
 
 endmodule
