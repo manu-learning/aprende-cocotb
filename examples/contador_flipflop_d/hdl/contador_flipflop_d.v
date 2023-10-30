@@ -1,6 +1,6 @@
 module contador_flipflop_d (
                  input        i_clk, // entrada de 1 bit para los flancos de reloj
-                 output [3:0] o_cuenta // vector de salida de 4 bits
+                 output reg [3:0] o_cuenta // vector de salida de 4 bits
 );
    // Observación sobre la salida de 4 bits
    //
@@ -24,9 +24,9 @@ module contador_flipflop_d (
   // por tanto "definimos dos registros" D y Q, igual que el Flip Flop D
   // - los registros D y Q, deben ser del tamaño de la salida (es decir de 4 bits)
   reg [3:0] r_cuenta_d = 4'd0; // lo inicializamos con el valor decimal 0
-  reg [3:0] r_cuenta_q = 4'd0; // lo inicializamos con el valor decimal 0
 
-  assign o_cuenta = r_cuenta_q;
+  //reg [3:0] r_cuenta_q = 4'd0; // lo inicializamos con el valor decimal 0
+  //assign o_cuenta = r_cuenta_q;
 
   // Bloque Secuencial
   // - éste bloque secuencial, dará la pauta para salir de sistema
@@ -38,7 +38,9 @@ module contador_flipflop_d (
       // - en "cada flanco de reloj" le asigna el valor de r_cuenta_d que es "la salida del Bloque Combinacional",
       // pero hace de "entrada de Flip Flop"
       // - ésta Q es la salida del Flip Flop, y también del sistema
-      r_cuenta_q <= r_cuenta_d;
+
+      //r_cuenta_q <= r_cuenta_d;
+      o_cuenta <= r_cuenta_d;
     end
 
   // Bloque Combinacional
@@ -60,13 +62,13 @@ module contador_flipflop_d (
 
       // si quisieramos aplicar alguna lógica, debería sobre sobre las Q
       // porque la Q es "el último estado válido del sistema"
-      if(r_cuenta_q == 4'd10)
+      if(o_cuenta == 4'd10)
         begin
           r_cuenta_d = 4'd0;
         end
       else
         begin
-          r_cuenta_d = r_cuenta_q + 1'd1;
+          r_cuenta_d = o_cuenta + 1'd1;
         end
     end
 
