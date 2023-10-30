@@ -2,16 +2,15 @@ VERILOG_SOURCE_FILES=$(wildcard $(VERILOG_SOURCE_CODE_DIR)/*.v)
 VERILOG_TESTBENCH=$(wildcard $(TESTBENCH_DIR)/*.v)
 
 EXAMPLE_NAME=$(notdir $(PWD))
-SIMULATION_FILE=$(EXAMPLE_NAME).vvp
-SIMULATION_VERILOG_TESTBENCH=$(EXAMPLE_NAME)_tb.vvp
+#SIMULATION_FILE=$(EXAMPLE_NAME).vvp
+#SIMULATION_VERILOG_TESTBENCH=$(EXAMPLE_NAME)_tb.vvp
 
-compile: $(SIMULATION_DIR)/$(SIMULATION_FILE)
-
-compile-testbench: $(SIMULATION_DIR)/$(SIMULATION_VERILOG_TESTBENCH)
+SIMULATION_VERILOG_TESTBENCH=sim.vvp
+WAVEFORMS_FILENAME=dump.vcd
 
 ##@ Acciones Generales (ejecutar dentro de un directorio raíz de un example)
 display-waveform: ##
-	gtkwave $(WAVEFORM_DIR)/dump.vcd
+	gtkwave $(WAVEFORM_DIR)/$(WAVEFORMS_FILENAME)
 
 myclean: ##
 	@rm --verbose $(WAVEFORM_DIR)/*.vcd
@@ -23,11 +22,12 @@ myclean: ##
 # - ejecuta el compilador por Icarus Verilog
 
 ##@ Acciones con Verilog (ejecutar dentro de un directorio raíz de un example)
-verilog-run: ##
-	vvp -v $(SIMULATION_DIR)/$(SIMULATION_FILE)
+compile-verilog-testbench: $(SIMULATION_DIR)/$(SIMULATION_VERILOG_TESTBENCH)
 
-verilog-testbench: ## (no confundir con el testbench de cocotb)
+run-verilog-testbench:
 	vvp -v $(SIMULATION_DIR)/$(SIMULATION_VERILOG_TESTBENCH)
+
+verilog-testbench: compile-verilog-testbench run-verilog-testbench ## (Compila->Ejecuta, NO confundir con cocotb)
 
 # (iverilog) Icarus Verilog Compiler
 # ----------------------------------
@@ -35,7 +35,4 @@ verilog-testbench: ## (no confundir con el testbench de cocotb)
 # - compila el código fuente de archivos .v
 
 $(SIMULATION_DIR)/$(SIMULATION_VERILOG_TESTBENCH): $(VERILOG_SOURCE_FILES) $(VERILOG_TESTBENCH)
-	iverilog -o $@ $^
-
-$(SIMULATION_DIR)/$(SIMULATION_FILE): $(VERILOG_SOURCE_FILES)
 	iverilog -o $@ $^
