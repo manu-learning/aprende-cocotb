@@ -59,10 +59,6 @@ module contador_flipflop_d_tb( );
    //
    // - se ejecutan una única vez,
    // por tanto NO sería necesario inicializar las variables internas (reg, wire) en su momento de declaración
-   //
-   // los delay/retraso
-   // - sólo pueden utilizar en los TestBenches
-   // - se utilizan de la forma #unidadDeTiempo usando el caracter # como prefijo
    initial
      begin
         // persistimos el comportamiento en un fichero (vcd) "value change dump"
@@ -73,7 +69,14 @@ module contador_flipflop_d_tb( );
 
         // imprimimos los valores
         $monitor("i_clk=%0d, o_cuenta=%0d", i_clk, o_cuenta);
+     end
 
+   // los delay/retraso
+   // - sólo pueden utilizar en los TestBenches
+   // - se utilizan de la forma #unidadDeTiempo usando el caracter # como prefijo
+   initial
+     begin
+        $display("\n#############################################################");
         // - inicializamos las entradas
         // - en el instante 0
         // i_clk = 0;
@@ -92,6 +95,7 @@ module contador_flipflop_d_tb( );
 
         // - generamos un retraso de otras 100 unidades de tiempo, para visualizarlo en el GTKWave
         #100;
+        $display("#############################################################\n");
 
         // IMPORTANTE:
         // si nos olvidamos de FINALIZAR éste bloque,

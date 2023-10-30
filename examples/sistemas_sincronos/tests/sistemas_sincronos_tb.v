@@ -63,10 +63,6 @@ module sistemas_sincronos_tb( );
    //
    // - se ejecutan una única vez,
    // por tanto NO sería necesario inicializar las variables internas (reg, wire) en su momento de declaración
-   //
-   // los delay/retraso
-   // - sólo pueden utilizar en los TestBenches
-   // - se utilizan de la forma #unidadDeTiempo usando el caracter # como prefijo
    initial
      begin
         // persistimos el comportamiento en un fichero (vcd) "value change dump"
@@ -77,7 +73,14 @@ module sistemas_sincronos_tb( );
 
         // imprimimos los valores
         $monitor("i_data=%b, i_selector=%b, o_q=%b, i_clk=%d", i_data, i_selector, o_q, i_clk);
+     end
 
+   // los delay/retraso
+   // - sólo pueden utilizar en los TestBenches
+   // - se utilizan de la forma #unidadDeTiempo usando el caracter # como prefijo
+   initial
+     begin
+        $display("\n#############################################################");
         // - inicializamos las entradas
         // - en el instante 0
         i_data = 4'b1001;
@@ -101,6 +104,7 @@ module sistemas_sincronos_tb( );
 
         // - generamos un retraso de otras 100 unidades de tiempo, para visualizarlo en el GTKWave
         #100;
+        $display("#############################################################\n");
 
         // IMPORTANTE:
         // si nos olvidamos de FINALIZAR éste bloque,

@@ -62,10 +62,6 @@ module flipflop_jk_tb( );
    //
    // - se ejecutan una única vez,
    // por tanto NO sería necesario inicializar las variables internas (reg, wire) en su momento de declaración
-   //
-   // los delay/retraso
-   // - sólo pueden utilizar en los TestBenches
-   // - se utilizan de la forma #unidadDeTiempo usando el caracter # como prefijo
    initial
      begin
         // persistimos el comportamiento en un fichero (vcd) "value change dump"
@@ -76,6 +72,14 @@ module flipflop_jk_tb( );
 
         // imprimimos los valores
         $monitor("i_j=%0d, i_k=%d, o_q=%0d, i_clk=%d", i_j, i_k, o_q, i_clk);
+     end
+
+   // los delay/retraso
+   // - sólo pueden utilizar en los TestBenches
+   // - se utilizan de la forma #unidadDeTiempo usando el caracter # como prefijo
+   initial
+     begin
+        $display("\n#############################################################");
 
         // - inicializamos las entradas
         // - en el instante 0
@@ -98,6 +102,7 @@ module flipflop_jk_tb( );
 
         // - generamos un retraso de otras 100 unidades de tiempo, para visualizarlo en el GTKWave
         #100;
+        $display("#############################################################\n");
 
         // IMPORTANTE:
         // si nos olvidamos de FINALIZAR éste bloque,
