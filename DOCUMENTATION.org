@@ -1,7 +1,11 @@
-* Referencias
-** Oficial
+* Referencias de Cocotb y Verilog
+** Referencias Oficiales
 1. https://docs.cocotb.org/en/v1.3.1/simulator_support.html
-** Extraoficial
+** Referencias ExtraOficiales
+1. https://peterfab.com/ref/verilog/verilog_renerta/
+2. https://peterfab.com/ref/verilog/verilog_renerta/mobile/source/vrg00056.htm
+* Referencias de Bash
+** Referencias Extraoficiales
 1. https://www.cyberciti.biz/faq/bash-get-exit-code-of-command/
 2. https://fabianlee.org/2020/10/14/bash-using-logic-expressions-as-a-shorthand-for-if-then-else-control/
 ** Issues
