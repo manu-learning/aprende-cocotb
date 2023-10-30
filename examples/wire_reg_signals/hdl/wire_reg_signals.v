@@ -16,4 +16,14 @@ module wire_reg_signals(input i_a, input i_b, output o_q);
    // (una conexión "interna" del tipo wire es la excepción)
    assign o_q = w_conexion & i_b;
 
+
+// - the "macro" to dump signals
+// - to get waveforms in VCD format some Verilog code must be added to the top component
+`ifdef COCOTB_SIM
+   initial begin
+      $dumpfile ("dump.vcd");
+      $dumpvars (0, wire_reg_signals);
+      #1;
+   end
+`endif
 endmodule
