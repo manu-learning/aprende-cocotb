@@ -39,6 +39,7 @@ async def salida_mantiene_su_estado_con_pulso_bajo_de_reloj(dut):
     assert dut.o_qn.value.integer == 1
     print("########################")
 
+# TODO: no está modificando la salida
 @cocotb.test()
 async def salida_modificada_con_flancos_de_subida_de_reloj(dut):
     task = cocotb.start_soon(Clock(dut.i_clk, 1, units="ns").start())
