@@ -16,7 +16,7 @@ module comparator_tb( );
 
    // - manejamos todas las entradas/salidas del sistema como variables internas del módulo (reg y wire)
    // - las entradas las declaramos como registros (reg)
-   // - las entradas las declaramos como cables (wire)
+   // - las salidas las declaramos como cables (wire)
    comparator dut(
                   .i_a (i_a),
                   .i_b(i_b),
