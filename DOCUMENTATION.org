@@ -1,13 +1,36 @@
+* Referencias Electrónica
+** Referencias ExtraOficiales
+1. https://www.multisim.com/content/GFYMpgaXkhRGEq9nGf4jra/d-latch-with-enable-preset-and-clear/
 * Referencias de Cocotb y Verilog
 ** Referencias Oficiales
 1. https://docs.cocotb.org/en/v1.3.1/simulator_support.html
+2. https://docs.cocotb.org/en/v1.7.2/writing_testbenches.html#logging
+3. https://docs.cocotb.org/en/v1.7.2/triggers.html
+4. https://docs.cocotb.org/en/v1.7.2/building.html
 ** Referencias ExtraOficiales
 1. https://peterfab.com/ref/verilog/verilog_renerta/
-2. https://peterfab.com/ref/verilog/verilog_renerta/mobile/source/vrg00056.htm
-* Referencias de Bash
+2. https://www.javatpoint.com/verilog (teoría+práctica, flip flop, counter, ..)
+3. https://www.chipverify.com/tutorials/verilog (teoría+práctica, flip flop, latches, ..)
+4. https://angelmicelti.github.io/4ESO/EDI/7_circuitos_lgicos_de_inters.html (Esquemas + teoría)
+5. http://asic-world.com/examples/systemverilog/index.html
+6. https://peterfab.com/ref/verilog/verilog_renerta/mobile/source/vrg00056.htm
+7. https://www.chipverify.com/verilog/verilog-testbench
+8. https://www.chipverify.com/verilog/verilog-timescale
+9. https://fpgatutorial.com/how-to-write-a-basic-verilog-testbench/
+10. http://www.ee.ic.ac.uk/pcheung/teaching/ee2_digital/Lecture%204-%20Verilog%20HDL-Part%202.pdf (más complejidad)
+11. https://angelmicelti.github.io/4ESO/EDI/sumador_completo.html
+12. https://hardwareteams.com/docs/fpga-asic/cocotb/fir-filter/
+13. http://asic-world.com/examples/systemverilog/simple_counter.html#8-Bit_Simple_Up_Counter
+** Issues
+1. https://electronics.stackexchange.com/questions/662879/when-using-cocotb-should-i-be-using-fallingedge-to-set-and-assert-values
+2. https://stackoverflow.com/questions/19457227/how-to-print-like-printf-in-python3
+* Referencias de Bash y GNU Make
 ** Referencias Extraoficiales
 1. https://www.cyberciti.biz/faq/bash-get-exit-code-of-command/
 2. https://fabianlee.org/2020/10/14/bash-using-logic-expressions-as-a-shorthand-for-if-then-else-control/
+3. https://ioflood.com/blog/pip-install-specific-version/
 ** Issues
 1. https://stackoverflow.com/questions/6790631/use-the-contents-of-a-file-to-replace-a-string-using-sed
 2. https://stackoverflow.com/questions/4749330/how-to-test-if-string-exists-in-file-with-bash
+3. https://stackoverflow.com/questions/15459837/how-to-get-the-basename-of-the-current-folder-as-variable-in-a-makefile
+4. https://stackoverflow.com/questions/16767575/how-to-remove-remove-multiple-different-extensions-from-a-word-list-in-gnu-make
