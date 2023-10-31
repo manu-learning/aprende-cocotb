@@ -2,7 +2,8 @@ module sistemas_sincronos(
                           input [3:0] i_data, // entrada del tipo vector de 4 bits
                           input [1:0] i_selector, // entrada del tipo vector de 2 bits
                           input       i_clk, // entrada del tipo escalar de 1 bit (idem con la salida)
-                          output reg o_q);
+                          output reg o_q // salida de 1 bit
+                          );
 
    // - declaramos registros
    // - necesario que sean de éste tipo, porque los usaremos dentro de los bloques always
@@ -18,25 +19,36 @@ module sistemas_sincronos(
    // requiere las keywords begin/end para delimitar su contenido
    // - con el * (asterísco), indicamos éste bloque es sensible a todas las entradas
    // (es decir se activará ante cualquier cambio de valor)
-   always @ *
+   // always @ *
+   always @ (posedge i_clk)
      begin
         // en cada condicional haremos un asignación bloqueante ó continua
 
         // verificamos si la combinación de 2 bits es 00
         if (i_selector == 2'b00)
-          r_salida_d = i_data[0];
+          begin
+             r_salida_d = i_data[0];
+          end
         // verificamos si la combinación de 2 bits es 01
         else if (i_selector == 2'b01)
-          r_salida_d = i_data[1];
+          begin
+             r_salida_d = i_data[1];
+          end
         // verificamos si la combinación de 2 bits es 10
         else if (i_selector == 2'b10)
-          r_salida_d = i_data[2];
+          begin
+             r_salida_d = i_data[2];
+          end
         // verificamos si la combinación de 2 bits es 11
         else
-          r_salida_d = i_data[3];
+          begin
+             r_salida_d = i_data[3];
+          end
      end
 
-   // no utilizamos las keywords begin/end en el bloque always, porque contiene sólo 1 sentencia
+   // assign o_q = r_salida_d;
+
+   // podriamos no utilizar las keywords begin/end en el bloque always, porque contiene sólo 1 sentencia
    always @(posedge i_clk)
       begin
          // asignación no bloqueante ó secuencial,
